@@ -5,3 +5,17 @@
 body{
     font-family: 'Poppins', sans-serif;
 }
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: 15px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    animation: l5 1s infinite linear alternate;
+  }
+  @keyframes l5 {
+      0%  {box-shadow: 20px 0 #fa0, -20px 0 #fa02;background: #fa0 }
+      33% {box-shadow: 20px 0 #fa0, -20px 0 #fa02;background: #fa02}
+      66% {box-shadow: 20px 0 #fa02,-20px 0 #fa0; background: #fa02}
+      100%{box-shadow: 20px 0 #fa02,-20px 0 #fa0; background: #fa0 }
+  }
