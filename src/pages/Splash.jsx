@@ -14,9 +14,11 @@ export const Splash = () => {
         const tokenValidate = (token) => {
             if(!token) {
                 navigate("/login")
+            }else{
+                navigate("/home")
             }
         }
-        setTimeout(tokenValidate(token()), 4000)
+        setTimeout(tokenValidate(token()), 5000)
     })
 
     return (

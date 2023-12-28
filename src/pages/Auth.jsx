@@ -22,7 +22,7 @@ export function Auth() {
       // console.log(data);
       const response = await loginUser(data);
       console.log(response);
-      
+  
       if(response.data.code === 200) {
         localStorage.setItem("SVR_TOKEN", JSON.stringify(response.data.data.token));
         navigate("/home");
