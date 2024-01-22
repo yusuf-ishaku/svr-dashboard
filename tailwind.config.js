@@ -8,6 +8,7 @@ export default {
     "./src/pages/Tickets.jsx",
     "./src/pages/components/AudioUploadForm.jsx",
     "./src/pages/components/VideoUploadForm.jsx",
+    "./src/pages/components/TicketUploadForm.jsx"
 
   ],
   theme: {
