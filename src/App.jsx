@@ -28,7 +28,7 @@ function App() {
   return (
     <>
       {token() ? (
-        <main className="w-[100vw] h-[100vh] flex flex-row bg-[#0A0B14]">
+        <main className="w-[100vw] h-[100vh] flex flex-row bg-[#0A0B14] fixed">
           <nav className="w-3/12 h-[100vh] flex-col flex justify-between">
             <header className="flex flex-row items-center justify-start">
               <img src={SVR}></img>
@@ -62,7 +62,7 @@ function App() {
               </li>
             </ul>
           </nav>
-          <section className="w-9/12 h-[100vh] bg-[#101220] p-4">
+          <section className="w-9/12 h-[100vh] bg-[#101220] p-4 overflow-y-auto">
             <Outlet ></Outlet>
           </section>
         </main>

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { FaHeadphonesAlt } from "react-icons/fa";
 import { FaChartLine } from "react-icons/fa6";
+import { IoLocationOutline } from "react-icons/io5";
 import { IoMdNotifications } from "react-icons/io";
 import { useState, useEffect } from "react";
 export const Home = () => {
@@ -56,12 +57,12 @@ export const Home = () => {
                
             </div>
             <div className="bg-[#0037ff59] text-[#e3d7d7] h-40 w-80 rounded-lg flex flex-col items-center justify-center">
-                <FaChartLine size={60}></FaChartLine>
+            <IoLocationOutline size={60} />
                 <h3>
-                 Most played Song
+                Next Event
                 </h3>
                 <span>
-                 Only By Montala Jay
+                 Pool Party
                 </span>
                
             </div>
