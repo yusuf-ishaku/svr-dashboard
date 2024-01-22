@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FaHeadphonesAlt } from "react-icons/fa";
 import { useGetAllAudiosQuery } from "../data/apiSlices/audioSlice";
 import { AudioUploadForm } from "./components/AudioUploadForm";
+import { VideoUploadForm } from "./components/VideoUploadForm";
 import { RiDeleteBin6Line } from "react-icons/ri";
 export const Music = () => {
   const [videoModalOpen, setVideoModalOpen] = useState(false);
@@ -35,7 +36,19 @@ export const Music = () => {
             </section>
           </section>
         )}
-        {videoModalOpen && <section className="bg-[#21212166]"></section>}
+        {videoModalOpen && <section className="w-9/12 h-full fixed bg-[#212121ab] pt-14 flex flex-row justify-center">
+            <section className="bg-[#0A0B14] w-fit h-fit px-4 rounded-md p-4">
+              <header className="flex flex-row items-center justify-between mb-5">
+                <h1 className="text-[#ffaa00] text-xl">Add new music video</h1>
+                <RxCross1
+                  cursor={"pointer"}
+                  onClick={() => setVideoModalOpen(false)}
+                  color="red"
+                />
+              </header>
+             <VideoUploadForm></VideoUploadForm>
+            </section>
+          </section>}
         {deleteModalOpen && (
           <section className="w-9/12 h-full fixed bg-[#212121ab] pt-40 flex flex-row justify-center">
             <section className="bg-[#0A0B14] w-fit h-fit px-4 rounded-md p-4">

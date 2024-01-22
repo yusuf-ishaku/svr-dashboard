@@ -35,8 +35,8 @@ export const Home = () => {
             </div>
           </div>
         </nav>
-        <section className="w-fit grid grid-cols-3 gap-5 pt-8">
-            <div className="bg-[#ffaa0059] text-[#e3d7d7] h-40 w-80 rounded-lg flex flex-col items-center justify-center">
+        <section className="w-full grid grid-cols-3 gap-5 pt-8">
+            <div className="bg-[#ffaa0059] text-[#e3d7d7] h-40 w-full rounded-lg flex flex-col items-center justify-center">
                 <FaHeadphonesAlt size={60}></FaHeadphonesAlt>
                 <h3>
                 Total Number of Plays
@@ -46,7 +46,7 @@ export const Home = () => {
                 </span>
                
             </div>
-            <div className="bg-[#0037ff59] text-[#e3d7d7] h-40 w-80 rounded-lg flex flex-col items-center justify-center">
+            <div className="bg-[#0037ff59] text-[#e3d7d7] h-40 w-full rounded-lg flex flex-col items-center justify-center">
                 <FaChartLine size={60}></FaChartLine>
                 <h3>
                  Most played Song
@@ -56,7 +56,7 @@ export const Home = () => {
                 </span>
                
             </div>
-            <div className="bg-[#0037ff59] text-[#e3d7d7] h-40 w-80 rounded-lg flex flex-col items-center justify-center">
+            <div className="bg-[#0037ff59] text-[#e3d7d7] h-40 w-full rounded-lg flex flex-col items-center justify-center">
             <IoLocationOutline size={60} />
                 <h3>
                 Next Event
