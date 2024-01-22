@@ -62,7 +62,7 @@ function App() {
               </li>
             </ul>
           </nav>
-          <section className="w-9/12 h-[100vh] bg-[#101220] p-4 overflow-y-auto">
+          <section className="w-9/12 h-[100vh] bg-[#101220] p-4 pt-0 overflow-y-auto">
             <Outlet ></Outlet>
           </section>
         </main>
