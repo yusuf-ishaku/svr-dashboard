@@ -19,6 +19,7 @@ function App() {
   useEffect(() => {
     console.log(token());
     if (token()) {
+      navigate("/home");
       return;
     } else {
       navigate("/auth/login");
