@@ -2,7 +2,7 @@ import { IoMdAdd } from "react-icons/io";
 import { RxCross1 } from "react-icons/rx";
 import { useState } from "react";
 import { FaHeadphonesAlt } from "react-icons/fa";
-import { useGetAllAudiosQuery } from "../data/apiSlices/audioSlice";
+import { useDeleteAudioMutation, useGetAllAudiosQuery } from "../data/apiSlices/audioSlice";
 import { AudioUploadForm } from "./components/AudioUploadForm";
 import { VideoUploadForm } from "./components/VideoUploadForm";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -11,19 +11,25 @@ export const Music = () => {
   const [audioModalOpen, setAudioModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [soundToDelete, setSoundToDelete] = useState("");
+  const [ soundToDeleteId, setSoundToDeleteId] = useState("");
   const { data } = useGetAllAudiosQuery();
+  const [deleteAudio, {isLoading, isSuccess}] = useDeleteAudioMutation();
   console.log(data);
 
   function deleteSound(sound, id) {
+    console.log(id)
     setDeleteModalOpen(true);
     setSoundToDelete(sound);
+    setSoundToDeleteId(id);
   }
+  
+ 
   return (
     <>
       <section className="w-[100%] h-auto bg-[#101220">
         {audioModalOpen && (
-          <section className="w-9/12 h-full fixed bg-[#212121ab] pt-14 flex flex-row justify-center">
-            <section className="bg-[#0A0B14] w-fit h-fit px-4 rounded-md p-4">
+          <section className="w-full px-4 pr-9 sm:w-9/12 h-full fixed bg-[#212121ab] pt-14 flex flex-row justify-center">
+            <section className="bg-[#0A0B14] w-full h-fit px-4 rounded-md p-4">
               <header className="flex flex-row items-center justify-between mb-5">
                 <h1 className="text-[#ffaa00] text-xl">Add new music audio</h1>
                 <RxCross1
@@ -36,8 +42,8 @@ export const Music = () => {
             </section>
           </section>
         )}
-        {videoModalOpen && <section className="w-9/12 h-full fixed bg-[#212121ab] pt-14 flex flex-row justify-center">
-            <section className="bg-[#0A0B14] w-fit h-fit px-4 rounded-md p-4">
+        {videoModalOpen && <section className="w-full sm:w-9/12 px-4 pr-9 h-full fixed bg-[#212121ab] pt-14 flex flex-row justify-center">
+            <section className="bg-[#0A0B14] w-full h-fit px-4 rounded-md p-4">
               <header className="flex flex-row items-center justify-between mb-5">
                 <h1 className="text-[#ffaa00] text-xl">Add new music video</h1>
                 <RxCross1
@@ -67,6 +73,13 @@ export const Music = () => {
                 <button
                   className="bg-red-800 px-4 text-white py-1 rounded-md mr-4"
                   type="submit"
+                  onClick={ async () => {
+                    console.log(soundToDeleteId)
+                    await deleteAudio(soundToDeleteId);
+                    if (isSuccess) {
+                      setDeleteModalOpen(false);
+                    }
+                  }}
                 >
                   Yes, sure
                 </button>
@@ -103,12 +116,12 @@ export const Music = () => {
           <header>
             <h1 className="text-[#ffaa00] text-2xl">Audios</h1>
           </header>
-          <article className="grid grid-cols-2">
+          <article className=" flex flex-col justify-center items-center sm:grid grid-cols-2">
             {data?.data.map((x, y) => {
               return (
                 <div
                   key={y}
-                  className="flex flex-col items-center mr-10 my-2 md:my-10 p-6 w-full md:w-[20rem] h-fit border-[1px] rounded-lg border-[#FFAA0080] bg-[#6666661a]"
+                  className="flex flex-col items-center mr-10 my-2 md:my-10 p-6 w-fit md:w-[20rem] h-fit border-[1px] rounded-lg border-[#FFAA0080] bg-[#6666661a]"
                 >
                   <div className="w-1/4 md:w-32 object-fit rounded-lg">
                     <img
@@ -137,7 +150,7 @@ export const Music = () => {
                       </div>
                       <div>
                         <RiDeleteBin6Line
-                          onClick={() => deleteSound(`${x.title} by ${x.artiste}`, x.id)}
+                          onClick={() => deleteSound(`${x.title} by ${x.artiste}`, x._id)}
                           color="red"
                           cursor={"pointer"}
                         />

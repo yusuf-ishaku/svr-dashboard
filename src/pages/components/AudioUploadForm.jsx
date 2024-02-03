@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
 import { useAddNewAudioMutation } from "../../data/apiSlices/audioSlice";
+import { useState } from "react";
 
 export const AudioUploadForm = () => {
   const uploadSchema = yup.object().shape({
@@ -14,20 +15,23 @@ export const AudioUploadForm = () => {
   const {register, handleSubmit, formState: {errors}, reset}  = useForm({
     resolver: yupResolver(uploadSchema)
   });
-  const [uploadAudio, {isLoading} ]  = useAddNewAudioMutation();
+  const [uploadAudio, {isLoading, isSuccess} ]  = useAddNewAudioMutation();
+  const [audio, setAudio] = useState(null);
+  const [cover, setCover] = useState(null);
   
   const onSubmithandler = async (data) => {
     console.log(data);
+    let token = JSON.parse(localStorage.getItem("SVR_CREDENTIALS"));
     let uploadData = new FormData();
     uploadData.append("artiste", data.artiste);
     uploadData.append("title", data.trackName);
-    uploadData.append("audio", data.audio);
-    uploadData.append("image", data.audioCover);
-    uploadAudio(uploadData);
+    uploadData.append("audio", audio);
+    uploadData.append("image", cover);
+   await uploadAudio({uploadData, token});
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmithandler)} className="bg-[#0A0B14] w-[40rem] h-fit px-4 rounded-md p-4">
+    <form onSubmit={handleSubmit(onSubmithandler)} className="bg-[#0A0B14] w-full sm:w-[40rem] h-fit px-4 rounded-md p-4">
       <div className="flex flex-col">
         <label className="text-[#ffaa00] text-md">Track Name</label>
         <input {...register("trackName")} className="border-[1px] text-[#ffaa00] border-[#ffaa00] bg-transparent outline-none p-2 rounded-md mt-1"></input>
@@ -42,6 +46,7 @@ export const AudioUploadForm = () => {
         <label className="text-[#ffaa00] text-md">Upload audio</label>
         <input
           {...register("audio")}
+          onChange={(e) => setAudio(e.target.files[0])}
           type="file"
           required={true}
           className="border-[1px] text-[#ffaa00] border-[#ffaa00] bg-transparent outline-none p-2 rounded-md mt-1"
@@ -52,6 +57,7 @@ export const AudioUploadForm = () => {
         <label className="text-[#ffaa00] text-md">Upload Cover Image</label>
         <input
           {...register("audioCover")}
+          onChange={(e) => setCover(e.target.files[0])}
           type="file"
           required={true}
           className="border-[1px] text-[#ffaa00] border-[#ffaa00] bg-transparent outline-none p-2 rounded-md mt-3"
