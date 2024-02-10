@@ -9,7 +9,8 @@ export const TicketUploadForm = () => {
     eventTime: yup.date().required("Time is required"),
     ticketPrice: yup.date().required("Please provide ticket price"),
     eventLocation: yup.string().required("Please provide event location"),
-    eventFlier: yup.mixed().required("Ticket image is required")
+    eventFlier: yup.mixed().required("Ticket image is required"),
+    amount: yup.number().required("Number of tickets to be sold is required")
   })
 
   const { handleSubmit, register, formState: {errors}, } = useForm({
@@ -32,6 +33,7 @@ export const TicketUploadForm = () => {
           <input {...register('eventDate')} type="date" className="border-[1px] text-[#ffaa00] border-[#ffaa00] bg-transparent outline-none p-2 rounded-md mt-3"></input>
           <span className="text-white h-4 mb-2 mt-1">{errors?.eventDate?.message}</span>
         </div>
+        
         <div className="flex flex-col mb-5">
           <label className="text-[#ffaa00] text-md">Event Time</label>
           <input
@@ -49,6 +51,11 @@ export const TicketUploadForm = () => {
             className="border-[1px] text-[#ffaa00] border-[#ffaa00] bg-transparent outline-none p-2 rounded-md mt-3"
           ></input>
           <span className="text-white h-4 mb-2 mt-1">{errors?.ticketPrice?.message}</span>
+        </div>
+        <div className="flex flex-col mb-5">
+          <label className="text-[#ffaa00] text-md">Number to be sold</label>
+          <input {...register('amount')} type="number" className="border-[1px] text-[#ffaa00] border-[#ffaa00] bg-transparent outline-none p-2 rounded-md mt-3"></input>
+          <span className="text-white h-4 mb-2 mt-1">{errors?.amount?.message}</span>
         </div>
         <div className="flex flex-col mb-5">
           <label className="text-[#ffaa00] text-md">Event Location</label>
