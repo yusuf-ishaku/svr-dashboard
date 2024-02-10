@@ -22,8 +22,8 @@ export const AudioUploadForm = () => {
   
   const onSubmithandler = async (data) => {
     console.log(data);
-    let token = JSON.parse(localStorage.getItem("SVR_CREDENTIALS"));
-    let uploadData = new FormData();
+    const token = JSON.parse(localStorage.getItem("SVR_CREDENTIALS"));
+    const uploadData = new FormData();
     uploadData.append("artiste", data.artiste);
     uploadData.append("title", data.trackName);
     uploadData.append("audio", audio);
@@ -42,7 +42,7 @@ export const AudioUploadForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmithandler)} className="bg-[#0A0B14] w-full h-fit px-4 rounded-md p-4">
       <div>
-        <span>{message}</span>
+        <span className="text-white">{message}</span>
       </div>
       <div className="flex flex-col">
         <label className="text-[#ffaa00] text-md">Track Name</label>
