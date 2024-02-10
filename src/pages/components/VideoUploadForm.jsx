@@ -1,6 +1,6 @@
 export const VideoUploadForm = () => {
     return (
-      <form className="bg-[#0A0B14]  w-full sm:w-[40rem] h-fit px-4 rounded-md p-4">
+      <form className="bg-[#0A0B14]  w-full h-fit px-4 rounded-md p-4">
         <div className="flex flex-col mb-5">
           <label className="text-[#ffaa00] text-md">URL:</label>
           <input className="border-[1px] text-[#ffaa00] border-[#ffaa00] bg-transparent outline-none p-2 rounded-md mt-3"></input>

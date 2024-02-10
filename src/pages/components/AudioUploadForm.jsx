@@ -15,9 +15,10 @@ export const AudioUploadForm = () => {
   const {register, handleSubmit, formState: {errors}, reset}  = useForm({
     resolver: yupResolver(uploadSchema)
   });
-  const [uploadAudio, {isLoading, isSuccess} ]  = useAddNewAudioMutation();
+  const [uploadAudio, {isLoading} ]  = useAddNewAudioMutation();
   const [audio, setAudio] = useState(null);
   const [cover, setCover] = useState(null);
+  const [message, setMessage] = useState("");
   
   const onSubmithandler = async (data) => {
     console.log(data);
@@ -27,11 +28,22 @@ export const AudioUploadForm = () => {
     uploadData.append("title", data.trackName);
     uploadData.append("audio", audio);
     uploadData.append("image", cover);
-   await uploadAudio({uploadData, token});
+   await uploadAudio({uploadData, token}).then((data) => {
+    if(data.data){
+      setMessage("Upload Sucessful");
+      reset();
+    }
+    else{
+      setMessage("Upload not successful, try again!")
+    }
+   });
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmithandler)} className="bg-[#0A0B14] w-full sm:w-[40rem] h-fit px-4 rounded-md p-4">
+    <form onSubmit={handleSubmit(onSubmithandler)} className="bg-[#0A0B14] w-full h-fit px-4 rounded-md p-4">
+      <div>
+        <span>{message}</span>
+      </div>
       <div className="flex flex-col">
         <label className="text-[#ffaa00] text-md">Track Name</label>
         <input {...register("trackName")} className="border-[1px] text-[#ffaa00] border-[#ffaa00] bg-transparent outline-none p-2 rounded-md mt-1"></input>
@@ -65,8 +77,8 @@ export const AudioUploadForm = () => {
          <span className="text-white h-4 mb-2 mt-1">{errors?.audioCover?.message}</span>
       </div>
       <div className="w-full flex justify-end">
-        <button className="bg-[#ffaa00] px-6 py-2 rounded-md " type="submit">
-          Upload
+        <button disabled={!isLoading} className={`${isLoading && "cursor-not-allowed"} bg-[#ffaa00] px-6 py-2 rounded-md`} type="submit">
+        {isLoading ? <span className="loader mx-6 my-auto"></span> : "Upload"}
         </button>
       </div>
     </form>

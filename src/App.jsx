@@ -66,7 +66,7 @@ function App() {
           <section className="w-[100vw] sm:w-9/12 h-[100vh] bg-[#101220] p-4 pt-0 overflow-y-auto">
             <Outlet ></Outlet>
           </section>
-          <nav className="w-[100vw] absolute bottom-0 bg-[#101220]  h-fit sm:hidden flex px-8 flex-row items-center justify-center">
+          <nav className="w-[100vw] fixed bottom-0 bg-[#101220]  h-fit sm:hidden flex px-8 flex-row items-center justify-center">
             <ul className="w-full flex flex-row justify-between items-center">
               <Link to={"/home"}>
               <li className={`text-xl flex flex-col pl-5 items-center justify-center w-full h-20 cursor-pointer  ${ !(pathname === "/home") ? " text-white" : "text-[#ffaa00]"} `}>
