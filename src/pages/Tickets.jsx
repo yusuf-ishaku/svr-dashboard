@@ -18,7 +18,10 @@ export const Tickets = () => {
                   color="red"
                 />
               </header>
+              <section className="overflow-scroll h-fit">
               <TicketUploadForm></TicketUploadForm>
+              </section>
+              
             </section>
           </section>
         )}

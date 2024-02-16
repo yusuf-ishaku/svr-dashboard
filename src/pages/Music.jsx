@@ -52,7 +52,9 @@ export const Music = () => {
                   color="red"
                 />
               </header>
-             <VideoUploadForm></VideoUploadForm>
+              <section className="w-fit overflow-scroll">
+              <VideoUploadForm></VideoUploadForm>
+              </section>
             </section>
           </section>}
         {deleteModalOpen && (
