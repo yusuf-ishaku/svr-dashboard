@@ -30,12 +30,6 @@ export function Auth() {
       // console.log(responseData);
       reset();
     }
-  // useEffect(() => {
-  //   // let token = JSON.parse(localStorage.getItem("SVR_CREDENTIALS"));
-  //   if(token) {
-  //     navigate("/home");
-  //   }
-  // })
   return (
     <section className='bg-[#0A0B14] w-[100vw] h-[100vh] flex flex-col items-center j'>
       <section className='border-[#FA0] border-[1px] w-[85%] md:w-[50%]  h-fit rounded-md pt-5 mt-20'>
