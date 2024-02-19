@@ -11,12 +11,14 @@ const ticketSlice = appApi.injectEndpoints({
         method: "POST",
         body: data.uploadData,
       }),
+      providesTags: ["Tickets"]
     }),
     getTicket: builder.query({
       query: () => ({
         url: "/api/v1/ticket",
         method: "GET"
-      })
+      }),
+      invalidatesTags: ["Tickets"]
     })
   }),
 });
