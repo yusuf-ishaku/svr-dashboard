@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
-import { useAddNewAudioMutation } from "../../data/apiSlices/audioSlice";
+import { useAddNewAudioMutation } from "../../../data/apiSlices/audioSlice";
 import { useState } from "react";
 
 export const AudioUploadForm = () => {

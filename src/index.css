@@ -19,3 +19,10 @@ body{
       66% {box-shadow: 20px 0 #fa02,-20px 0 #fa0; background: #fa02}
       100%{box-shadow: 20px 0 #fa02,-20px 0 #fa0; background: #fa0 }
   }
+
+  .loader2 {
+    width: 8px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    animation: l5 1s infinite linear alternate;
+  }

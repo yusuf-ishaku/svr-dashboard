@@ -7,8 +7,8 @@ import {Provider} from "react-redux"
 import { Auth } from './pages/Auth.jsx';
 import { store } from './data/store.js';
 import { Home } from './pages/Home.jsx';
-import { Music } from './pages/Music.jsx';
-import { Tickets } from './pages/Tickets.jsx';
+import { Music } from './pages/Music/Music.jsx';
+import { Tickets } from './pages/Tickets/Tickets.jsx';
 
 
 const router = createBrowserRouter([

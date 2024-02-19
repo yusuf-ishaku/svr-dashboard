@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { useAddNewVideoMutation } from "../../data/apiSlices/videoSlice";
+import { useAddNewVideoMutation } from "../../../data/apiSlices/videoSlice";
 
 
 export const VideoUploadForm = () => {

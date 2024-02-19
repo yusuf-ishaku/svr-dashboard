@@ -2,7 +2,7 @@ import { IoMdAdd } from "react-icons/io";
 import { RxCross1 } from "react-icons/rx";
 import { useState } from "react";
 import { FaHeadphonesAlt } from "react-icons/fa";
-import { useDeleteAudioMutation, useGetAllAudiosQuery } from "../data/apiSlices/audioSlice";
+import { useDeleteAudioMutation, useGetAllAudiosQuery } from "../../data/apiSlices/audioSlice";
 import { AudioUploadForm } from "./components/AudioUploadForm";
 import { VideoUploadForm } from "./components/VideoUploadForm";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -28,7 +28,7 @@ export const Music = () => {
     <>
       <section className="w-[100%] h-auto bg-[#101220">
         {audioModalOpen && (
-          <section className="w-full px-4 pr-9 sm:w-9/12 h-full fixed bg-[#212121ab] pt-14 flex flex-row justify-center">
+          <section className="w-full px-4 pr-9 sm:w-9/12 h-full fixed bg-[#212121ab]  overflow-y-scroll pt-14 flex flex-row justify-center">
             <section className="bg-[#0A0B14] w-full h-fit px-4 rounded-md p-4">
               <header className="flex flex-row items-center justify-between mb-5">
                 <h1 className="text-[#ffaa00] text-xl">Add new music audio</h1>
@@ -42,7 +42,7 @@ export const Music = () => {
             </section>
           </section>
         )}
-        {videoModalOpen && <section className="w-full sm:w-9/12 px-4 pr-9 h-full fixed bg-[#212121ab] pt-14 flex flex-row justify-center">
+        {videoModalOpen && <section className="w-full sm:w-9/12 px-4 pr-9 h-full fixed bg-[#212121ab]  overflow-y-scroll pt-14 flex flex-row justify-center">
             <section className="bg-[#0A0B14] w-full h-fit px-4 rounded-md p-4">
               <header className="flex flex-row items-center justify-between mb-5">
                 <h1 className="text-[#ffaa00] text-xl">Add new music video</h1>
@@ -52,7 +52,7 @@ export const Music = () => {
                   color="red"
                 />
               </header>
-              <section className="w-fit overflow-scroll">
+              <section className="h-fit">
               <VideoUploadForm></VideoUploadForm>
               </section>
             </section>
@@ -68,31 +68,43 @@ export const Music = () => {
                   color="red"
                 />
               </header>
-              <div className="bg-[#0A0B14] w-[40rem] h-fit px-4 rounded-md p-4">
+              {
+                isSuccess ? 
+                <div className="bg-[#0A0B14] w-[40rem] h-fit px-4 rounded-md p-4">
+                  <span className="text-white block mb-4">
+                   Delete Successful!
+                  </span>
+                </div>
+                :
+                <div className="bg-[#0A0B14] w-[40rem] h-fit px-4 rounded-md p-4">
                 <span className="text-white block mb-4">
                   Are you sure you want to delete this sound, {soundToDelete} ?
                 </span>
                 <button
                   className="bg-red-800 px-4 text-white py-1 rounded-md mr-4"
                   type="submit"
+                  disabled={isLoading}
                   onClick={ async () => {
-                    console.log(soundToDeleteId)
+                    console.log(soundToDeleteId);
                     await deleteAudio(soundToDeleteId);
                     if (isSuccess) {
                       setDeleteModalOpen(false);
                     }
                   }}
                 >
-                  Yes, sure
+                 {isLoading ? <span className="loader2"></span> : "Yes, sure"}
                 </button>
                 <button
                   className="border-red-800 border-[1px] text-white px-4 py-1 rounded-md "
                   type="submit"
+                  disabled={isLoading}
                   onClick={() => setDeleteModalOpen(false)}
                 >
                   No.
                 </button>
               </div>
+              }
+              
             </section>
           </section>
         )}
