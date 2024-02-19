@@ -7,8 +7,8 @@ export const TicketTagPoint = (props) => {
   const tagPointSchema = yup.object().shape({
     tag: yup.string().required("Ticket Tag is required"),
     description: yup.string().required("Ticket description is required"),
-    quantity: yup.number().typeError("This should be a number").required("Quantity to be sold is required"),
-    price: yup.number().typeError("This should be a number").required("Ticket price is required"),
+    quantity: yup.number().min(1).typeError("This should be a number").required("Quantity to be sold is required"),
+    price: yup.number().min(1).typeError("This should be a number").required("Ticket price is required"),
   });
   const {
     handleSubmit,
@@ -18,8 +18,7 @@ export const TicketTagPoint = (props) => {
     resolver: yupResolver(tagPointSchema),
   });
 
-  const ticketSubmit = (data) => {
-    console.log(data);
+  const ticketSubmit = () => {
     props.ticketFormsReady(true);
   };
   return (

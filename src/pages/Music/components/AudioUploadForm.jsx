@@ -3,6 +3,7 @@ import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
 import { useAddNewAudioMutation } from "../../../data/apiSlices/audioSlice";
 import { useState } from "react";
+import { getToken } from "../../utils/getToken";
 
 export const AudioUploadForm = () => {
   const uploadSchema = yup.object().shape({
@@ -19,10 +20,9 @@ export const AudioUploadForm = () => {
   const [audio, setAudio] = useState(null);
   const [cover, setCover] = useState(null);
   const [message, setMessage] = useState("");
+  const token = getToken();
   
   const onSubmithandler = async (data) => {
-    console.log(data);
-    const token = JSON.parse(localStorage.getItem("SVR_CREDENTIALS"));
     const uploadData = new FormData();
     uploadData.append("artiste", data.artiste);
     uploadData.append("title", data.trackName);
@@ -77,7 +77,7 @@ export const AudioUploadForm = () => {
          <span className="text-white h-4 mb-2 mt-1">{errors?.audioCover?.message}</span>
       </div>
       <div className="w-full flex justify-end">
-        <button disabled={!isLoading} className={`${isLoading && "cursor-not-allowed"} bg-[#ffaa00] px-6 py-2 rounded-md`} type="submit">
+        <button disabled={isLoading} className={`${isLoading && "cursor-not-allowed"} bg-[#ffaa00] px-6 py-2 rounded-md`} type="submit">
         {isLoading ? <span className="loader mx-6 my-auto"></span> : "Upload"}
         </button>
       </div>

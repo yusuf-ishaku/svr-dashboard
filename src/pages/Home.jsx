@@ -4,24 +4,21 @@ import { FaChartLine } from "react-icons/fa6";
 import { IoLocationOutline } from "react-icons/io5";
 import { IoMdNotifications } from "react-icons/io";
 import { useState, useEffect } from "react";
+import { getToken } from "./utils/getToken";
 export const Home = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState();
   // const { pathname } = useLocation();
-  let token = () => {
-    let info = JSON.parse(localStorage.getItem("SVR_CREDENTIALS"));
-    return info;
-  };
+ const token = getToken();
   useEffect(() => {
-    console.log(token());
-    if (token()) {
-      const usernameVal = token().split(" ")[1];
+    if (token) {
+      const usernameVal = token.split(" ")[1];
       setUsername(usernameVal);
       return;
     } else {
       navigate("/auth/login");
     }
-  }, [navigate]);
+  }, [navigate, token]);
   return (
     <>
       <section className="w-full h-auto bg-[#101220] p-4">

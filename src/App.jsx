@@ -9,26 +9,23 @@ import { AiFillHome } from "react-icons/ai";
 import { IoLogOut } from "react-icons/io5";
 // import { ReactReduxContext } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { getToken } from "./pages/utils/getToken";
 function App() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  let token = () => {
-    let info = JSON.parse(localStorage.getItem("SVR_CREDENTIALS"));
-    return info;
-  };
+  const token = getToken();
   useEffect(() => {
-    console.log(token());
-    if (token()) {
+    if (token) {
       navigate("/home");
       return;
     } else {
       navigate("/auth/login");
     }
-  }, [navigate]);
-  console.log(pathname)
+  }, [navigate, token]);
+  // console.log(pathname)
   return (
     <>
-      {token() ? (
+      {token ? (
         <main className="w-[100vw] h-[100vh] flex flex-row bg-[#0A0B14] fixed">
           <nav className="w-0 sm:w-3/12 h-[100vh] hidden sm:flex flex-col justify-between">
             <header className="flex flex-row items-center justify-start">

@@ -3,6 +3,7 @@ import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { useAddNewVideoMutation } from "../../../data/apiSlices/videoSlice";
+import { getToken } from "../../utils/getToken";
 
 
 export const VideoUploadForm = () => {
@@ -14,9 +15,8 @@ export const VideoUploadForm = () => {
       resolver: yupResolver(uploadFormSchema)
     });
     const [uploadVideo, {isLoading}] = useAddNewVideoMutation();
+    const token = getToken();
     const submitData = async (data) => {
-      console.log(data);
-      const token = JSON.parse(localStorage.getItem("SVR_CREDENTIALS"));
       await uploadVideo({data, token}).then((data) => {
         if(data.data) {
           setMessage("Upload Sucessful");
@@ -39,7 +39,7 @@ export const VideoUploadForm = () => {
           <span className="text-white h-4 mb-2 mt-1">{errors?.trackName?.message}</span>
         </div>
         <div className="w-full flex justify-end">
-        <button disabled={!isLoading} className={`${isLoading && "cursor-not-allowed"} bg-[#ffaa00] px-6 py-2 rounded-md`} type="submit">
+        <button disabled={isLoading} className={`${isLoading && "cursor-not-allowed"} bg-[#ffaa00] px-6 py-2 rounded-md`} type="submit">
         {isLoading ? <span className="loader mx-6 my-auto"></span> : "Upload"}
         </button>
         </div>
