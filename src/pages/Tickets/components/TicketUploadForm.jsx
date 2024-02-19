@@ -4,9 +4,10 @@ import { useForm } from "react-hook-form";
 import { IoMdAdd } from "react-icons/io";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { TicketTagPoint } from "./TicketTagPoint";
+import { eventFormSubmit } from "../utils/submitForm";
 
 export const TicketUploadForm = () => {
-  // const [ticketCount, setTicketCount] = useState(1);
+  let ticketsFormsReady = [];
   const tagPointRef = useRef(null);
   const formRef = useRef(null);
   let [tagPointArray, setTagPointArray] = useState([
@@ -25,7 +26,7 @@ export const TicketUploadForm = () => {
       .required("Please input event date"),
     eventTime: yup.date().typeError("This should be a date").required("Time is required"),
     eventLocation: yup.string().required("Please provide event location"),
-    eventFlier: yup.mixed().required("Ticket image is required"),
+    eventFlier: yup.mixed().typeError("This should be a file").required("Ticket image is required"),
   });
   const {
     handleSubmit,
@@ -35,19 +36,17 @@ export const TicketUploadForm = () => {
     resolver: yupResolver(ticketUploadSchema),
   });
   const uploadTicket = (data) => {
-    console.log(data);
+    console.log(ticketsFormsReady)
+    if(ticketsFormsReady.length === tagPointArray.length && data) {
+      const uploadData = {
+        ...data,
+        tickets: [
+          ...tagPointArray
+        ]
+      }
+      console.log(uploadData);
+    }
   };
-  const eventFormSubmit = () => {
-    let forms = Array.from(tagPointRef.current.children);
-    forms.forEach((child) => {
-      child.lastChild.click();
-    });
-    formRef.current.addEventListener("submit", (e) => {
-      e.preventDefault();
-    });
-    formRef.current.lastChild.click();
-  };
-
   const removeTagPoint = (i) => {
     let resolvedTagPointArray = tagPointArray.filter((x) => x.id !== i);
     setTagPointArray(resolvedTagPointArray);
@@ -57,9 +56,12 @@ export const TicketUploadForm = () => {
   const setArrayData = (index, key, value) => {
     tagPointArray[index][key] = value;
     console.log(tagPointArray);
-  
     setTagPointArray([...tagPointArray]);
   };
+  const ticketFormsGo = (value) => {
+    ticketsFormsReady = [...ticketsFormsReady, value]
+  }
+
   return (
     <section className="bg-[#0A0B14] w-full h-fit px-4 rounded-md p-4">
       <form
@@ -137,8 +139,8 @@ export const TicketUploadForm = () => {
                     id: tagPointArray.length,
                     tag: "",
                     description: "",
-                    quantity: 0,
-                    price: 0,
+                    quantity: null,
+                    price: null,
                   },
                 ]);
               }}
@@ -160,6 +162,7 @@ export const TicketUploadForm = () => {
                   id={x.id}
                   setArrayData={setArrayData}
                   removeTagPoint={removeTagPoint}
+                  ticketFormsReady = {ticketFormsGo}
                 ></TicketTagPoint>
               );
             })}
@@ -168,7 +171,7 @@ export const TicketUploadForm = () => {
       </div>
       <div className="w-full flex justify-end">
         <button
-          onClick={eventFormSubmit}
+          onClick={() => eventFormSubmit(tagPointRef, formRef)}
           className="bg-[#ffaa00] px-6 py-2 rounded-md"
           type="button"
         >

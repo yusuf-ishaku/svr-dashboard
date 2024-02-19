@@ -20,6 +20,7 @@ export const TicketTagPoint = (props) => {
 
   const ticketSubmit = (data) => {
     console.log(data);
+    props.ticketFormsReady(true);
   };
   return (
     <form
