@@ -108,7 +108,7 @@ export const Music = () => {
             </section>
           </section>
         )}
-        <div className="flex flex-row gap-5 pt-10">
+        <div className="flex flex-col md:flex-row gap-5 pt-10">
           <button
             onClick={() => {
               setAudioModalOpen(true);

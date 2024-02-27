@@ -32,7 +32,7 @@ export const Home = () => {
             </div>
           </div>
         </nav>
-        <section className="w-full grid grid-cols-3 gap-5 pt-8">
+        <section className="w-full flex flex-col  md:grid md:grid-cols-3 gap-5 pt-8">
             <div className="bg-[#ffaa0059] text-[#e3d7d7] h-40 w-full rounded-lg flex flex-col items-center justify-center">
                 <FaHeadphonesAlt size={60}></FaHeadphonesAlt>
                 <h3>

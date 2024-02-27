@@ -9,6 +9,7 @@ import { store } from './data/store.js';
 import { Home } from './pages/Home.jsx';
 import { Music } from './pages/Music/Music.jsx';
 import { Tickets } from './pages/Tickets/Tickets.jsx';
+import {LogoutComponent} from "./pages/LogoutComponent/LogoutComponent.jsx"
 
 
 const router = createBrowserRouter([
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "tickets",
         element: <Tickets></Tickets>
+      },
+      {
+        path: "logout",
+        element: <LogoutComponent></LogoutComponent>
       }
     ]
   },

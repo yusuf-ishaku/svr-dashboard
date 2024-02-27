@@ -10,7 +10,7 @@ export const Tickets = () => {
     <>
       <section className="w-full h-[100vh]  bg-[#101220]">
         {addTicketModalOpen && (
-          <section className="w-full sm:w-9/12 h-full px-4 pr-9 fixed bg-[#212121ab] overflow-y-scroll pt-14 flex flex-row justify-center ">
+          <section className="w-full sm:w-9/12 h-full px-4 pr-9 pb-20 fixed bg-[#212121ab] overflow-y-scroll pt-14 flex flex-row justify-center ">
             <section className="bg-[#0A0B14] w-full h-fit px-4 rounded-md p-4">
               <header className="flex flex-row items-center justify-between mb-5">
                 <h1 className="text-[#ffaa00] text-xl">New Ticket</h1>

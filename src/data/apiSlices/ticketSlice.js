@@ -7,7 +7,7 @@ const ticketSlice = appApi.injectEndpoints({
         headers: {
           Authorization: `Bearer ${data.token}`,
         },
-        url: "/api/v1/ticket",
+        url: "/api/v1/events",
         method: "POST",
         body: data.uploadData,
       }),
@@ -15,7 +15,7 @@ const ticketSlice = appApi.injectEndpoints({
     }),
     getTicket: builder.query({
       query: () => ({
-        url: "/api/v1/ticket",
+        url: "/api/v1/events",
         method: "GET"
       }),
       invalidatesTags: ["Tickets"]
