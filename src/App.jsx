@@ -68,25 +68,25 @@ function App() {
               <Link to={"/home"}>
               <li className={`text-xl flex flex-col pl-5 items-center justify-center w-full h-20 cursor-pointer  ${ !(pathname === "/home") ? " text-white" : "text-[#ffaa00]"} `}>
                 <AiFillHome className="sm:mr-4"></AiFillHome>
-                Home
+               
               </li>
               </Link>
               <Link to={"/music"}>
               <li className={`text-xl flex flex-col pl-5 items-center justify-center w-full h-20 cursor-pointer  ${ !(pathname === "/music") ? " text-white" : "text-[#ffaa00]"}`}>
                 <FaMusic className="sm:mr-4"></FaMusic>
-                Music
+               
               </li>
               </Link>
              <Link to={"/tickets"}>
              <li className={`text-xl flex flex-col pl-5 items-center justify-center w-full h-20 cursor-pointer  ${ !(pathname === "/tickets") ? " text-white" : "text-[#ffaa00]"}`}>
                 <FaTicket className="sm:mr-4"></FaTicket>
-                Tickets
+               
               </li>
              </Link>
              <Link to={"/logout"}>
              <li className={`text-xl flex flex-col pl-5 items-center justify-center w-full h-20 cursor-pointer  ${ !(pathname === "/logout") ? " text-white" : "text-[#ffaa00]"}`}>
                 <IoLogOut className="mr-4"></IoLogOut>
-                Logout
+               
               </li>
              </Link>
              
