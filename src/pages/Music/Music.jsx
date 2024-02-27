@@ -26,7 +26,7 @@ export const Music = () => {
  
   return (
     <>
-      <section className="w-[100%] h-auto bg-[#101220">
+      <section className="w-[100%] h-auto bg-[#101220] pb-20 overflow-y-scroll">
         {audioModalOpen && (
           <section className="w-full px-4 pr-9 sm:w-9/12 h-full fixed bg-[#212121ab]  overflow-y-scroll pt-14 flex flex-row justify-center">
             <section className="bg-[#0A0B14] w-full h-fit px-4 rounded-md p-4">
@@ -137,7 +137,7 @@ export const Music = () => {
                   key={y}
                   className="flex flex-col items-center mr-10 my-2 md:my-10 p-6 w-fit md:w-[20rem] h-fit border-[1px] rounded-lg border-[#FFAA0080] bg-[#6666661a]"
                 >
-                  <div className="w-1/4 md:w-32 object-fit rounded-lg">
+                  <div className="w-1/4 md:w-full object-fit rounded-lg">
                     <img
                       className="object-fit rounded-lg"
                       src={

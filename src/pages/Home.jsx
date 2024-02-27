@@ -21,7 +21,7 @@ export const Home = () => {
   }, [navigate, token]);
   return (
     <>
-      <section className="w-full h-auto bg-[#101220] p-4">
+      <section className="w-full h-auto bg-[#101220] p-4 pb-20 overflow-y-auto">
         <nav className="h-20 flex flex-row justify-between items-center mr-10">
           <header className="flex flex-row justify-between">
             <h1 className="text-[#ffaa00] text-3xl">Welcome back, {username}</h1>
