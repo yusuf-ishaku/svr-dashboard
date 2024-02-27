@@ -137,7 +137,7 @@ export const Music = () => {
                   key={y}
                   className="flex flex-col items-center mr-10 my-2 md:my-10 p-6 w-fit md:w-[20rem] h-fit border-[1px] rounded-lg border-[#FFAA0080] bg-[#6666661a]"
                 >
-                  <div className="w-1/4 md:w-full object-fit rounded-lg">
+                  <div className="w-full md:w-32 object-fit rounded-lg">
                     <img
                       className="object-fit rounded-lg"
                       src={
